@@ -7,7 +7,28 @@
 </head>
 <body style="background-color:lightcyan;">
     <h1>Hello world!</h1>
-    <p>hi</p>
 
+
+<table>
+    <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Section</th>
+    </tr>
+    {% for student in students %}
+        <tr>
+            <td>
+               {% if student.image %}
+                  <img src="{{ student.image.url }}" width="120">
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+            <td>{{ student.name }} </td>
+            <td>{{ student.section }} </td>
+        </tr>
+    {% endfor %}
+
+</table>
 </body>
 </html>
