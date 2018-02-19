@@ -3,31 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>KLAUSIMAS</title>
-
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
 </head>
 <body>
-    <h1>KLAUSIMAS IR ATSAKYMAS</h1>
-
-
-{#<table>#}
-{#    <tr>#}
-{#        <th>Image</th>#}
-{#        <th>Name</th>#}
-{#        <th>Section</th>#}
-{#    </tr>#}
-{#    {% for student in students %}#}
-{#        <tr>#}
-{#            <td>#}
-{#               {% if student.image %}#}
-{#                  <img src="{{ student.image.url }}" width="120">#}
-{#                {% else %}#}
-{#                    -#}
-{#                {% endif %}#}
-{#            </td>#}
-{#            <td>{{ student.name }} </td>#}
-{#            <td>{{ student.section }} </td>#}
-{#        </tr>#}
-{#    {% endfor %}#}
+<h1>KLAUSIMAS IR ATSAKYMAS</h1>
+<form method="post">
+                {% csrf_token %}
 
     <table>
         <tr>
@@ -36,21 +22,31 @@
             <th>Taškai</th>
         </tr>
         {% for question in questions %}
-        <tr>
-           <td>
-            {{question.question  }}
-           </td>
+            <tr>
             <td>
-            <form
+                {{ question.question }}
+            </td>
+            <td>
 
-             </td>
+                <!-- Forma -->
+                {{ answersform.as_p }}
+                <!-- Forma -->
+
+            </td>
+            <td>
+                {% if answersform %} {{ answer.question }}
+                    gerai
+                {% else %}
+                    blogai
+                {% endif %}
+            </td>
         {% endfor %}
         </tr>
 
     </table>
+                <input type="submit" value="Submit"/>
 
-
-{#</table>#}
+</form>
 
 </body>
 </html>

@@ -11,7 +11,14 @@ from web.models import Question
 def index(request):
     students = Student.objects.all()
     questions = Question.objects.all()
-    questionsform = QuestionsForm()
-    answers = AnswersForm()
+    answersform = AnswersForm()
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = AnswersForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            cleaned_data = request.POST.getlist('answer')
+            print(cleaned_data)
 
-    return render(request, 'index.html', {'students': students, 'questionsform': questionsform, 'answers': answers, 'questions':questions})
+
+    return render(request, 'index.html', {'students': students, 'answersform': answersform, 'questions':questions})
