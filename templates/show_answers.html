@@ -49,11 +49,11 @@
 
             </td>
             <td>
-                        {% if question.0.answer == question.1 %}
-                            Correct
-                        {% else %}
-                            Incorrect
-                        {% endif %}
+                {% if question.0.answer == question.1 %}
+                    Correct
+                {% else %}
+                    Incorrect
+                {% endif %}
 
             </td>
         {% endfor %}
@@ -63,6 +63,8 @@
     <input type="submit" value="Submit"/>
 
 </form>
-
+    <h2>
+    Taškai:{{ points }}
+    </h2>
 </body>
 </html>

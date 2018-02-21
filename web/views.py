@@ -25,9 +25,15 @@ def index(request):
                 questions_with_answers.append((question, ans))
             print(questions_with_answers)
 
+            points = 0
+            for question in questions_with_answers:
+                if question[0].answer == question[1]:
+                    points = points + 1
             # questions_with_answers = zip(user_questions, user_answers)
             return render(request, 'show_answers.html',
-                          {'students': students, 'answersform': answersform, 'questions': questions_with_answers})
+                          {'students': students, 'answersform': answersform, 'questions': questions_with_answers, 'points': points})
 
     return render(request, 'index.html', {'students': students, 'answersform': answersform, 'questions': questions})
+
+
 
