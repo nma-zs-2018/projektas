@@ -29,5 +29,5 @@ def index(request):
             return render(request, 'show_answers.html',
                           {'students': students, 'answersform': answersform, 'questions': questions_with_answers})
 
+    return render(request, 'index.html', {'students': students, 'answersform': answersform, 'questions': questions})
 
-    return render(request, 'index.html', {'students': students, 'answersform': answersform, 'questions': questions, 'points':points})
