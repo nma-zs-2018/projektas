@@ -7,6 +7,9 @@ from web.models import Student
 from web.models import Question
 
 
+def bootstrap(request):
+    return render(request, 'bootstrap.html')
+
 def index(request):
     students = Student.objects.all()
     questions = Question.objects.all()
