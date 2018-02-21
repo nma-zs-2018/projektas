@@ -12,8 +12,20 @@
 </head>
 <body>
 <h1>KLAUSIMAS IR ATSAKYMAS</h1>
+{#{% if questions_with_answers %}#}
+{#    {% for question_with_ans in questions_with_answers %}#}
+{#        {% if question_with_ans.0.answer == question_with_ans.1 %}#}
+{#            Correct {{ question_with_ans.1 }}#}
+{#        {% else %}#}
+{#            Incorrect {{ question_with_ans.1 }}#}
+{#        {% endif %}#}
+{#<br>#}
+{#    {% endfor %}#}
+{#{% endif %}#}
+
+
 <form method="post">
-                {% csrf_token %}
+    {% csrf_token %}
 
     <table>
         <tr>
@@ -22,9 +34,12 @@
             <th>Taškai</th>
         </tr>
         {% for question in questions %}
+
             <tr>
             <td>
                 {{ question.question }}
+                <input type='hidden' name='question' value='{{ question.pk }}'/>
+
             </td>
             <td>
 
@@ -34,13 +49,23 @@
 
             </td>
             <td>
-                
+{% if questions_with_answers %}
+    {% for question_with_ans in questions_with_answers %}
+        {% if question_with_ans.0.answer == question_with_ans.1 %}
+            Correct {{ question_with_ans.1 }}
+        {% else %}
+            Incorrect {{ question_with_ans.1 }}
+        {% endif %}
+<br>
+    {% endfor %}
+{% endif %}
+
             </td>
         {% endfor %}
         </tr>
 
     </table>
-                <input type="submit" value="Submit"/>
+    <input type="submit" value="Submit"/>
 
 </form>
 

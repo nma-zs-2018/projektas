@@ -12,3 +12,21 @@ services:
       - "8000:8000"
     depends_on:
       - db
+nginx:
+    image: nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+      volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./static:/code/static
+      - ./media:/code/media
+    depends_on:
+     - web
+
+  web:
+    build: .
+    volumes:
+        - .:/code
+    parts:
+        - "8000:8000"
