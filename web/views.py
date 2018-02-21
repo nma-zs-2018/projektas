@@ -23,12 +23,11 @@ def index(request):
             for (pk, ans) in zip(user_questions, user_answers):
                 question = Question.objects.filter(pk=pk).first()
                 questions_with_answers.append((question, ans))
-
+            print(questions_with_answers)
 
             # questions_with_answers = zip(user_questions, user_answers)
-            return render(request, 'index.html',
-                          {'students': students, 'answersform': answersform, 'questions': questions,
-                           'questions_with_answers': questions_with_answers})
+            return render(request, 'show_answers.html',
+                          {'students': students, 'answersform': answersform, 'questions': questions_with_answers})
 
 
-    return render(request, 'index.html', {'students': students, 'answersform': answersform, 'questions': questions})
+    return render(request, 'index.html', {'students': students, 'answersform': answersform, 'questions': questions, 'points':points})

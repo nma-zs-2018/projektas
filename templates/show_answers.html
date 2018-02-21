@@ -31,14 +31,14 @@
         <tr>
             <th>Klausimas</th>
             <th>Atsakymas</th>
-
+            <th>Taškai</th>
         </tr>
         {% for question in questions %}
 
             <tr>
             <td>
-                {{ question.question }}
-                <input type='hidden' name='question' value='{{ question.pk }}'/>
+                {{ question.0.question }}
+                <input type='hidden' name='question' value='{{ question.0.pk }}'/>
 
             </td>
             <td>
@@ -46,6 +46,14 @@
                 <!-- Forma -->
                 {{ answersform.as_p }}
                 <!-- Forma -->
+
+            </td>
+            <td>
+                        {% if question.0.answer == question.1 %}
+                            Correct
+                        {% else %}
+                            Incorrect
+                        {% endif %}
 
             </td>
         {% endfor %}
