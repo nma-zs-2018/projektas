@@ -1,32 +1,20 @@
 version: '3'
 
 services:
-  db:
-    image: postgres
-  web:
-    build: .
-    command: python3 manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/code
-    ports:
-      - "8000:8000"
-    depends_on:
-      - db
-nginx:
+  nginx:
     image: nginx
     container_name: nginx
     ports:
       - "80:80"
-      volumes:
+    volumes:
       - ./nginx:/etc/nginx/conf.d
       - ./static:/code/static
       - ./media:/code/media
     depends_on:
-     - web
-
+      - web
   web:
     build: .
     volumes:
-        - .:/code
-    parts:
-        - "8000:8000"
+      - .:/code
+    ports:
+      - "8000:8000"
